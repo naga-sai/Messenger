@@ -1,0 +1,18 @@
+<h1>Details Page</h1>
+<form>
+  <div class="form-group" ng-repeat=" (key,value) in currentMsg track by $index">
+    <i class="fa-star" ng-if="key=='important'" ng-class="(value)?'fas':'far'" ng-click="mark(id)"></i>
+    <label for="exampleFormControlInput1" ng-if="key!='important'">{{
+      key
+      }}</label>
+    <input ng-if="key!='important'" type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{ value }}"
+      disabled />
+  </div>
+  <button class="btn btn-primary" ng-click="showReply()">Reply</button>
+  <button class="btn btn-danger" ng-click="delMsg(id)">Delete</button> <br><br>
+  <button class="btn btn-warning" ng-click="backToMessages()">Back to Messages</button>
+  <div id="replyDiv" ng-show="replyDiv">
+    <input type="text" placeholder="Reply..." ng-model="reply" />
+    <button ng-click="replyMsg(id)">Send</button>
+  </div>
+</form>

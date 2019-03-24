@@ -1,0 +1,45 @@
+<h1>Your Messages</h1>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Sender</th>
+      <th scope="col">Subject</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="message in urMsg track by $index">
+      <th scope="row">
+        <i class="fa-star" ng-class="(message.important)?'fas':'far'" ng-click="mark($index)"></i>
+      </th>
+      <td>
+        <a href="#/messages/{{ $index }}">{{ message.Sender }}</a>
+      </td>
+      <td>
+        <a href="#/messages/{{ $index }}"> {{ message.Subject }}</a>
+      </td>
+      <td>
+        <button class="btn btn-danger" ng-click="delMsg($index)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" ng-click="newMessage()">
+  Send New Message
+</button>
+<div id="newMsg" ng-show="showMsg">
+  <label for="recepient">Recepient</label> <br />
+  <select ng-model="Recepient" name="recepient">
+    <option value="">Select Recepient</option>
+    <option ng-repeat="user in users" value="{{ user.username }}">{{ user.username }}
+    </option>
+  </select>
+  <br />
+  <br />
+  <label for="subject">Subject</label> <br />
+  <input type="text" ng-model="subject" name="subject" /> <br />
+  <label for="body">Body</label> <br /><textarea name="body" id="" cols="30" rows="5" ng-model="body"></textarea>
+  <br />
+  <button ng-click="sendMessage()">Send</button>
+</div>
